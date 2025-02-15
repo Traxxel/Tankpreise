@@ -37,6 +37,10 @@ public class CommandHandler
         catch (Exception ex)
         {
             Console.WriteLine($"Fehler beim Hinzufügen der Station: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Details: {ex.InnerException.Message}");
+            }
             return 1;
         }
     }
@@ -70,6 +74,10 @@ public class CommandHandler
                 {
                     errorCount++;
                     Console.WriteLine($"Fehler beim Abrufen der Preise für {station.Name}: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"Details: {ex.InnerException.Message}");
+                    }
                 }
             }
 
@@ -82,6 +90,10 @@ public class CommandHandler
         catch (Exception ex)
         {
             Console.WriteLine($"Fehler beim Aktualisieren der Preise: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Details: {ex.InnerException.Message}");
+            }
             return 1;
         }
     }

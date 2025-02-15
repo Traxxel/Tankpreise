@@ -61,6 +61,6 @@ public class StationDetail
     [JsonPropertyName("lng")]
     public decimal Longitude { get; set; }
 
-    [Column("last_update", TypeName = "timestamp with time zone")]
-    public DateTime LastUpdate { get; set; } = DateTime.UtcNow;
+    [Column("last_update", TypeName = "timestamp")]
+    public DateTime LastUpdate { get; set; } = DateTime.Now;
 } 
