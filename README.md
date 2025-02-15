@@ -1,18 +1,28 @@
-# Tankpreise Collector
+# Tankpreise
 
-Ein .NET-Tool zum Sammeln und Speichern von Tankstellenpreisen und -details von der Tankerkönig-API.
+Eine Full-Stack-Anwendung zum Sammeln, Anzeigen und Analysieren von Tankstellenpreisen mit Daten von der Tankerkönig-API.
 
 ## Features
 
-- Abrufen und Speichern von Tankstellen-Details
-- Automatisches Aktualisieren von Kraftstoffpreisen für alle gespeicherten Tankstellen
-- Persistente Speicherung in einer PostgreSQL-Datenbank
-- Kommandozeilen-Interface für einfache Bedienung
+- **Datensammlung**:
+  - Abrufen und Speichern von Tankstellen-Details
+  - Automatisches Aktualisieren von Kraftstoffpreisen
+  - Persistente Speicherung in einer PostgreSQL-Datenbank
+  - Kommandozeilen-Interface für einfache Bedienung
+
+- **Web-Frontend**:
+  - Moderne Benutzeroberfläche mit React und DevExtreme
+  - Übersichtliche Darstellung aller Tankstellen als Karten
+  - Detaillierte Informationen zu jeder Tankstelle (Öffnungszeiten, Adresse, etc.)
+  - Interaktive Preisverlaufsgrafiken der letzten 7 Tage
+  - Responsive Design für optimale Nutzung auf allen Geräten
 
 ## Voraussetzungen
 
 - .NET 8.0 SDK
+- Node.js und npm
 - PostgreSQL Datenbank
+- DevExtreme Lizenz (für die Charts)
 - Tankerkönig API-Key (kostenlos erhältlich unter [creativecommons.tankerkoenig.de](https://creativecommons.tankerkoenig.de))
 
 ## Installation
@@ -27,25 +37,27 @@ git clone https://github.com/Traxxel/Tankpreise.git
 cd Tankpreise
 ```
 
-3. Abhängigkeiten wiederherstellen:
+3. Backend-Abhängigkeiten wiederherstellen:
 ```bash
 dotnet restore
 ```
 
-4. Datenbank-Verbindung konfigurieren:
-   - Öffnen Sie `Tankpreise.DAL/Data/TankpreiseContext.cs`
-   - Passen Sie den Connection-String an Ihre PostgreSQL-Installation an
+4. Frontend-Abhängigkeiten installieren:
+```bash
+cd Tankpreise.Web
+npm install
+```
 
-5. API-Key konfigurieren:
-   - Erstellen Sie eine Datei `Tankpreise.Collector/appsettings.json`
-   - Fügen Sie folgenden Inhalt ein:
-   ```json
-   {
-     "TankerkoenigApi": {
-       "ApiKey": "IHR-API-KEY"
-     }
-   }
-   ```
+5. Konfigurationsdateien erstellen:
+   
+   **Backend**:
+   - Kopieren Sie `Tankpreise.Collector/appsettings.example.json` nach `appsettings.json`
+   - Fügen Sie Ihren Tankerkönig API-Key ein
+   - Passen Sie die Datenbankverbindung an
+
+   **Frontend**:
+   - Kopieren Sie `Tankpreise.Web/src/config/devexpress-license.example.ts` nach `devexpress-license.ts`
+   - Fügen Sie Ihren DevExtreme Lizenzschlüssel ein
 
 6. Datenbank-Migration ausführen:
 ```bash
@@ -54,19 +66,25 @@ dotnet ef database update --project Tankpreise.DAL
 
 ## Verwendung
 
-### Neue Tankstelle hinzufügen
+### Daten-Collector starten
 ```bash
-Tankpreise.Collector.exe --addstation --stationid=STATION-ID
-```
-Beispiel:
-```bash
-Tankpreise.Collector.exe --addstation --stationid=24a381e3-0d72-416d-bfd8-b2f65f6e5802
+cd Tankpreise.Collector
+dotnet run -- --refreshprices
 ```
 
-### Preise aller Tankstellen aktualisieren
+### Backend-API starten
 ```bash
-Tankpreise.Collector.exe --refreshprices
+cd Tankpreise.API
+dotnet run
 ```
+
+### Frontend-Entwicklungsserver starten
+```bash
+cd Tankpreise.Web
+npm run dev
+```
+
+Die Anwendung ist dann unter `http://localhost:5502` erreichbar.
 
 ## Projektstruktur
 
@@ -79,13 +97,31 @@ Tankpreise.Collector.exe --refreshprices
   - `Models/`: Datenbankmodelle
   - `Repositories/`: Datenzugriffsmethoden
 
+- **Tankpreise.API**: REST-API für das Frontend
+  - `Controllers/`: API-Endpunkte
+  
+- **Tankpreise.Web**: React Frontend
+  - `src/components/`: React-Komponenten
+  - `src/pages/`: Seitenkomponenten
+  - `src/services/`: API-Integration
+  - `src/config/`: Konfigurationsdateien
+
 ## Technologien
 
+### Backend
 - .NET 8.0
+- ASP.NET Core Web API
 - Entity Framework Core
 - PostgreSQL
-- System.CommandLine (Beta)
-- Tankerkönig API
+- System.CommandLine
+
+### Frontend
+- React 18
+- Vite
+- TypeScript
+- DevExtreme
+- React Router
+- Axios
 
 ## Lizenz
 
@@ -93,6 +129,6 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert. Die Tankerkönig-API-Daten s
 
 ## Hinweise
 
-- Die `appsettings.json` mit dem API-Key wird nicht zu GitHub gepusht (in .gitignore aufgeführt)
+- Sensitive Konfigurationsdateien (`appsettings.json`, `devexpress-license.ts`) werden nicht zu GitHub gepusht
 - Alle Zeitstempel werden in der lokalen Zeitzone gespeichert
 - Die Tankerkönig-API hat Nutzungsbeschränkungen, bitte beachten Sie die API-Dokumentation 
