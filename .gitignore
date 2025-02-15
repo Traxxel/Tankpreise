@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# API Keys
+Tankpreise.Collector/appsettings.json
