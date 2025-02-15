@@ -13,7 +13,7 @@ public class StationPreise
 
     [Required]
     [Column("stations_id", TypeName = "uuid")]
-    [JsonPropertyName("id")]
+    [JsonPropertyName("stationId")]
     public string StationsId { get; set; } = string.Empty;
 
     [Required]

@@ -55,3 +55,5 @@ refreshPricesCommand.SetHandler(async () =>
 
 // Kommandozeile ausführen
 return await rootCommand.InvokeAsync(args);
+
+

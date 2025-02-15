@@ -1,0 +1,93 @@
+.station-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    position: relative;
+}
+
+.station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.station-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.status-badge.open {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.closed {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.station-name {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.station-address {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.station-247 {
+    color: #1976d2;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.station-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.station-details {
+    padding: 15px;
+}
+
+.detail-row {
+    margin-bottom: 20px;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-row strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.detail-row p {
+    margin: 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+.detail-row pre {
+    margin: 5px 0;
+    white-space: pre-line;
+    font-family: inherit;
+    color: #666;
+} 

@@ -1,0 +1,41 @@
+.chart-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px 0;
+    height: 500px;
+}
+
+.station-info {
+    color: #666;
+    font-size: 1.1em;
+    margin: 10px 0 20px 0;
+}
+
+.error {
+    color: #c62828;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.header-with-back {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.header-with-back h1 {
+    margin: 0;
+} 

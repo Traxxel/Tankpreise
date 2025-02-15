@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tankpreise.DAL", "Tankpreis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tankpreise.Collector", "Tankpreise.Collector\Tankpreise.Collector.csproj", "{E13EA8CF-0DC4-4571-84C3-3F123C5A9E41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tankpreise.API", "Tankpreise.API\Tankpreise.API.csproj", "{52755F86-C406-4FFC-B6EB-02C75904EA40}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +46,17 @@ Global
 		{E13EA8CF-0DC4-4571-84C3-3F123C5A9E41}.Release|x64.Build.0 = Release|Any CPU
 		{E13EA8CF-0DC4-4571-84C3-3F123C5A9E41}.Release|x86.ActiveCfg = Release|Any CPU
 		{E13EA8CF-0DC4-4571-84C3-3F123C5A9E41}.Release|x86.Build.0 = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|x64.Build.0 = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Debug|x86.Build.0 = Debug|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|x64.ActiveCfg = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|x64.Build.0 = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|x86.ActiveCfg = Release|Any CPU
+		{52755F86-C406-4FFC-B6EB-02C75904EA40}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
