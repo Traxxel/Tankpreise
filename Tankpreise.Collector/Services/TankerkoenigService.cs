@@ -9,7 +9,7 @@ public class TankerkoenigService
 {
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
-    private const string BaseUrl = "https://creativecommons.tankerkoenig.de/json/prices.php";
+    private const string BaseUrl = "https://creativecommons.tankerkoenig.de/json";
 
     public TankerkoenigService(IConfiguration configuration, HttpClient? httpClient = null)
     {
@@ -20,7 +20,7 @@ public class TankerkoenigService
 
     public async Task<StationPreise?> GetStationPreiseAsync(string stationId)
     {
-        var url = $"{BaseUrl}?ids={stationId}&apikey={_apiKey}";
+        var url = $"{BaseUrl}/prices.php?ids={stationId}&apikey={_apiKey}";
         
         try
         {
@@ -48,6 +48,30 @@ public class TankerkoenigService
             return null;
         }
     }
+
+    public async Task<StationDetail?> GetStationDetailAsync(string stationId)
+    {
+        var url = $"{BaseUrl}/detail.php?id={stationId}&apikey={_apiKey}";
+        
+        try
+        {
+            var response = await _httpClient.GetStringAsync(url);
+            var result = JsonSerializer.Deserialize<DetailResponse>(response);
+            
+            if (result?.Ok == true && result.Station != null)
+            {
+                result.Station.LastUpdate = DateTime.UtcNow;
+                return result.Station;
+            }
+            
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fehler beim Abrufen der Tankstellen-Details: {ex.Message}");
+            return null;
+        }
+    }
 }
 
 public class ApiResponse
@@ -57,6 +81,15 @@ public class ApiResponse
 
     [JsonPropertyName("prices")]
     public Dictionary<string, StationPrice> Prices { get; set; } = new();
+}
+
+public class DetailResponse
+{
+    [JsonPropertyName("ok")]
+    public bool Ok { get; set; }
+
+    [JsonPropertyName("station")]
+    public StationDetail? Station { get; set; }
 }
 
 public class StationPrice

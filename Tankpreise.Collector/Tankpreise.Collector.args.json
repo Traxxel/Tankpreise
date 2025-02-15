@@ -1,0 +1,14 @@
+{
+  "FileVersion": 2,
+  "Id": "e13ea8cf-0dc4-4571-84c3-3f123c5a9e41",
+  "Items": [
+    {
+      "Id": "be6467c7-983f-470f-ae37-d0d073d376ab",
+      "Command": "--addstation --stationid=3e3248cc-868a-4493-9bea-14ee8b12f0b4"
+    },
+    {
+      "Id": "c531f694-ad71-4a44-950b-8eee822167ea",
+      "Command": "--refreshprices"
+    }
+  ]
+}

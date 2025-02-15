@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.CommandLine;
+using Tankpreise.Collector.Commands;
 using Tankpreise.Collector.Services;
 using Tankpreise.DAL.Data;
 using Tankpreise.DAL.Repositories;
@@ -14,24 +16,42 @@ var configuration = new ConfigurationBuilder()
 var services = new ServiceCollection()
     .AddDbContext<TankpreiseContext>()
     .AddScoped<IStationPreiseRepository, StationPreiseRepository>()
+    .AddScoped<IStationDetailRepository, StationDetailRepository>()
     .AddScoped<TankerkoenigService>()
+    .AddScoped<CommandHandler>()
     .AddSingleton<IConfiguration>(configuration)
     .BuildServiceProvider();
 
-// Services abrufen
-var tankerkoenigService = services.GetRequiredService<TankerkoenigService>();
-var repository = services.GetRequiredService<IStationPreiseRepository>();
+// Kommandozeilen-Optionen definieren
+var addStationOption = new Option<string>(
+    name: "--stationid",
+    description: "Die ID der Tankstelle, die hinzugefügt werden soll");
 
-// Beispiel für einen API-Aufruf
-const string testStationId = "490aaccd-d16b-44fe-59b9-ac31ec063235";
-var preise = await tankerkoenigService.GetStationPreiseAsync(testStationId);
+var addStationCommand = new Command("--addstation", "Fügt eine neue Tankstelle hinzu oder aktualisiert eine bestehende")
+{
+    addStationOption
+};
 
-if (preise != null)
+var refreshPricesCommand = new Command("--refreshprices", "Aktualisiert die Preise aller gespeicherten Tankstellen");
+
+var rootCommand = new RootCommand("Tankpreise Collector - Verwaltet Tankstellen und deren Preise");
+rootCommand.AddCommand(addStationCommand);
+rootCommand.AddCommand(refreshPricesCommand);
+
+// Handler für die Kommandos
+addStationCommand.SetHandler(async (string stationId) =>
 {
-    await repository.AddStationPreiseAsync(preise);
-    Console.WriteLine($"Tankpreise erfolgreich in der Datenbank gespeichert! E5: {preise.E5:F3}€, E10: {preise.E10:F3}€, Diesel: {preise.Diesel:F3}€");
-}
-else
+    using var scope = services.CreateScope();
+    var handler = scope.ServiceProvider.GetRequiredService<CommandHandler>();
+    await handler.AddStationAsync(stationId);
+}, addStationOption);
+
+refreshPricesCommand.SetHandler(async () =>
 {
-    Console.WriteLine("Fehler beim Abrufen der Tankpreise!");
-}
+    using var scope = services.CreateScope();
+    var handler = scope.ServiceProvider.GetRequiredService<CommandHandler>();
+    await handler.RefreshPricesAsync();
+});
+
+// Kommandozeile ausführen
+return await rootCommand.InvokeAsync(args);
