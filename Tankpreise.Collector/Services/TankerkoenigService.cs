@@ -36,7 +36,7 @@ public class TankerkoenigService
                     E5 = preise.E5,
                     E10 = preise.E10,
                     Diesel = preise.Diesel,
-                    Timestamp = DateTime.UtcNow
+                    Timestamp = DateTime.Now
                 };
             }
             
@@ -60,7 +60,7 @@ public class TankerkoenigService
             
             if (result?.Ok == true && result.Station != null)
             {
-                result.Station.LastUpdate = DateTime.UtcNow;
+                result.Station.LastUpdate = DateTime.Now;
                 return result.Station;
             }
             

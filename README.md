@@ -94,5 +94,5 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert. Die Tankerkönig-API-Daten s
 ## Hinweise
 
 - Die `appsettings.json` mit dem API-Key wird nicht zu GitHub gepusht (in .gitignore aufgeführt)
-- Alle Zeitstempel werden in UTC gespeichert
+- Alle Zeitstempel werden in der lokalen Zeitzone gespeichert
 - Die Tankerkönig-API hat Nutzungsbeschränkungen, bitte beachten Sie die API-Dokumentation 
