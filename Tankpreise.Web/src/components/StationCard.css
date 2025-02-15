@@ -5,6 +5,9 @@
     padding: 20px;
     margin: 10px;
     width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
@@ -13,11 +16,16 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    flex-shrink: 0;
 }
 
 .station-header h3 {
     margin: 0;
     color: #333;
+    font-size: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .status-badge {
@@ -25,6 +33,7 @@
     border-radius: 4px;
     font-size: 0.9em;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .status-badge.open {
@@ -41,24 +50,38 @@
     font-size: 1.1em;
     color: #666;
     margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
 }
 
 .station-address {
     color: #666;
     margin-bottom: 15px;
     line-height: 1.4;
+    flex-shrink: 0;
 }
 
 .station-247 {
     color: #1976d2;
     font-size: 0.9em;
-    margin-bottom: 15px;
+    margin: 5px 0;
+    flex-shrink: 0;
 }
 
 .station-actions {
     display: flex;
     gap: 10px;
     margin-top: auto;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding-top: 15px;
+}
+
+.station-actions :global(.dx-button) {
+    flex: 1;
+    min-width: 0;
 }
 
 .station-details {
@@ -90,4 +113,50 @@
     white-space: pre-line;
     font-family: inherit;
     color: #666;
+}
+
+.station-prices {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 2px 0;
+}
+
+.fuel-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.price-value {
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.price-update {
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: #666;
+    text-align: right;
+}
+
+.price-format {
+    display: inline-flex;
+    align-items: flex-start;
+    font-weight: inherit;
+}
+
+.price-format sup {
+    font-size: 0.6em;
+    margin-top: 0.2em;
+    margin-left: 0.1em;
+    margin-right: 0.2em;
 } 
