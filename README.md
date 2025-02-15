@@ -15,6 +15,7 @@ Eine Full-Stack-Anwendung zum Sammeln, Anzeigen und Analysieren von Tankstellenp
   - Übersichtliche Darstellung aller Tankstellen als Karten
   - Detaillierte Informationen zu jeder Tankstelle (Öffnungszeiten, Adresse, etc.)
   - Interaktive Preisverlaufsgrafiken der letzten 7 Tage
+  - Direkte Anzeige der Tankstellen-Standorte in OpenStreetMap
   - Responsive Design für optimale Nutzung auf allen Geräten
 
 ## Voraussetzungen
