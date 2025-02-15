@@ -7,6 +7,10 @@
       "Command": "--addstation --stationid=3e3248cc-868a-4493-9bea-14ee8b12f0b4"
     },
     {
+      "Id": "ea7b4dbf-2af9-428c-86c2-d5245d64adf4",
+      "Command": "--addstation --stationid=490aaccd-d16b-44fe-59b9-ac31ec063235"
+    },
+    {
       "Id": "c531f694-ad71-4a44-950b-8eee822167ea",
       "Command": "--refreshprices"
     }

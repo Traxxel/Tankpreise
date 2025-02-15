@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Tankpreise.DAL.Data;
@@ -13,9 +14,11 @@ using Tankpreise.DAL.Models;
 namespace Tankpreise.DAL.Migrations
 {
     [DbContext(typeof(TankpreiseContext))]
-    partial class TankpreiseContextModelSnapshot : ModelSnapshot
+    [Migration("20250215121807_AddStationDetailFields")]
+    partial class AddStationDetailFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

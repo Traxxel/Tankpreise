@@ -63,4 +63,43 @@ public class StationDetail
 
     [Column("last_update", TypeName = "timestamp")]
     public DateTime LastUpdate { get; set; } = DateTime.Now;
+
+    [Column("state", TypeName = "varchar(4)")]
+    [JsonPropertyName("state")]
+    public string State { get; set; } = string.Empty;
+
+    [Column("opening_times", TypeName = "jsonb")]
+    [JsonPropertyName("openingTimes")]
+    public List<OpeningTime> OpeningTimes { get; set; } = new();
+
+    [Column("overrides", TypeName = "jsonb")]
+    [JsonPropertyName("overrides")]
+    public List<OpeningTimeOverride> Overrides { get; set; } = new();
+}
+
+public class OpeningTime
+{
+    [JsonPropertyName("text")]
+    public string Text { get; set; } = string.Empty;
+
+    [JsonPropertyName("start")]
+    public TimeSpan Start { get; set; }
+
+    [JsonPropertyName("end")]
+    public TimeSpan End { get; set; }
+}
+
+public class OpeningTimeOverride
+{
+    [JsonPropertyName("date")]
+    public DateTime Date { get; set; }
+
+    [JsonPropertyName("text")]
+    public string Text { get; set; } = string.Empty;
+
+    [JsonPropertyName("start")]
+    public TimeSpan? Start { get; set; }
+
+    [JsonPropertyName("end")]
+    public TimeSpan? End { get; set; }
 } 
