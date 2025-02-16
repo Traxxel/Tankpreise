@@ -11,6 +11,9 @@
 **/appsettings.Development.json
 !**/appsettings.example.json
 
+# Publish scripts
+**/_publishScript.sh
+
 # User-specific files
 *.rsuser
 *.suo
