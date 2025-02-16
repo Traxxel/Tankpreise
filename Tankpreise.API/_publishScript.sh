@@ -1,0 +1,1 @@
+rsync -v -r * root@ebcsrv11.ebc.rocks:/var/www/api_tankpreise_ebc_rocks

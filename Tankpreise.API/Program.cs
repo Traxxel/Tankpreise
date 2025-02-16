@@ -14,9 +14,13 @@ namespace Tankpreise.API
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins("http://localhost:5502") // Web port
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
+                    policy.WithOrigins(
+                            "http://localhost:5502",       // Lokale Entwicklung
+                            "http://tankpreise.ebc.rocks", // Produktion HTTP
+                            "https://tankpreise.ebc.rocks" // Produktion HTTPS
+                        )
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
             });
 
