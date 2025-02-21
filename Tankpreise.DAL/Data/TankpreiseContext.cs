@@ -74,6 +74,10 @@ namespace Tankpreise.DAL.Data
 
                 entity.Property(e => e.Overrides)
                     .HasConversion(overridesConverter);
+
+                entity.Property(e => e.State)
+                    .HasColumnType("varchar(4)")
+                    .IsRequired(false);
             });
         }
     }

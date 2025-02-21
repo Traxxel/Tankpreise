@@ -35,31 +35,51 @@ export const PriceHistoryPage: React.FC = () => {
             diesel: { min: Infinity, max: -Infinity, avg: 0 }
         };
 
+        // Separate Zähler für jede Kraftstoffart
+        let countE5 = 0;
+        let countE10 = 0;
+        let countDiesel = 0;
+
         const stats = priceData.reduce((acc, price) => {
             // E5
-            acc.e5.min = Math.min(acc.e5.min, price.e5);
-            acc.e5.max = Math.max(acc.e5.max, price.e5);
-            acc.e5.avg += price.e5;
+            if (price.e5 > 0) {
+                acc.e5.min = Math.min(acc.e5.min, price.e5);
+                acc.e5.max = Math.max(acc.e5.max, price.e5);
+                acc.e5.avg += price.e5;
+                countE5++;
+            }
 
             // E10
-            acc.e10.min = Math.min(acc.e10.min, price.e10);
-            acc.e10.max = Math.max(acc.e10.max, price.e10);
-            acc.e10.avg += price.e10;
+            if (price.e10 > 0) {
+                acc.e10.min = Math.min(acc.e10.min, price.e10);
+                acc.e10.max = Math.max(acc.e10.max, price.e10);
+                acc.e10.avg += price.e10;
+                countE10++;
+            }
 
             // Diesel
-            acc.diesel.min = Math.min(acc.diesel.min, price.diesel);
-            acc.diesel.max = Math.max(acc.diesel.max, price.diesel);
-            acc.diesel.avg += price.diesel;
+            if (price.diesel > 0) {
+                acc.diesel.min = Math.min(acc.diesel.min, price.diesel);
+                acc.diesel.max = Math.max(acc.diesel.max, price.diesel);
+                acc.diesel.avg += price.diesel;
+                countDiesel++;
+            }
 
             return acc;
         }, initialStats);
 
-        const count = priceData.length;
-        if (count > 0) {
-            stats.e5.avg /= count;
-            stats.e10.avg /= count;
-            stats.diesel.avg /= count;
-        }
+        // Durchschnitt nur berechnen, wenn gültige Werte vorhanden sind
+        if (countE5 > 0) stats.e5.avg /= countE5;
+        if (countE10 > 0) stats.e10.avg /= countE10;
+        if (countDiesel > 0) stats.diesel.avg /= countDiesel;
+
+        // Setze Min/Max auf 0, wenn keine gültigen Werte gefunden wurden
+        if (stats.e5.min === Infinity) stats.e5.min = 0;
+        if (stats.e5.max === -Infinity) stats.e5.max = 0;
+        if (stats.e10.min === Infinity) stats.e10.min = 0;
+        if (stats.e10.max === -Infinity) stats.e10.max = 0;
+        if (stats.diesel.min === Infinity) stats.diesel.min = 0;
+        if (stats.diesel.max === -Infinity) stats.diesel.max = 0;
 
         return stats;
     };

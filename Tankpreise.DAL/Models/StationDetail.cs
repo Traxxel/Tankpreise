@@ -66,7 +66,7 @@ public class StationDetail
 
     [Column("state", TypeName = "varchar(4)")]
     [JsonPropertyName("state")]
-    public string State { get; set; } = string.Empty;
+    public string? State { get; set; }
 
     [Column("opening_times", TypeName = "jsonb")]
     [JsonPropertyName("openingTimes")]
